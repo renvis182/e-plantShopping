@@ -288,8 +288,8 @@ function ProductList({ onHomeClick }) {
                         <span
                             style={{
                             position: 'absolute',
-                            top: '0px',
-                            right: '0px',
+                            top: '38px',
+                            right: '37px',
                             background: 'white',
                             color: '#4CAF50',
                             fontWeight: 'bold',
