@@ -9,27 +9,66 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    let total = 0;                              // variable to count
+    cart.forEach((item) => {                   // iterate the array
+        const quantity = item.quantity;          // quantity of item
+        const costNumber = parseFloat(          // convert "$15" -> 15
+        item.cost.substring(1)
+        );
+
+        total += costNumber * quantity;          //counting cost by quantity
+    });q
+    return total;                             
   };
 
   const handleContinueShopping = (e) => {
-   
+    e.preventDefault && e.preventDefault();  // opcional
+    onContinueShopping();                    // vuelve a la pantalla de productos
   };
 
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
 
 
   const handleIncrement = (item) => {
+    dispatch(
+        updateQuantity({
+          name: item.name,              // identificamos el ítem por nombre
+          quantity: item.quantity + 1,  // nueva cantidad
+        })
+      );
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+        // bajar cantidad en 1
+        dispatch(
+          updateQuantity({
+            name: item.name,
+            quantity: item.quantity - 1,
+          })
+        );
+      } else {
+        // si ya va a 0, lo quitamos del carrito
+        dispatch(removeItem(item.name));
+      }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    let total = 0;
+    cart.forEach((item) => {
+        const quantity = item.quantity;
+        const unitPrice = parseFloat(item.cost.substring(1)); // "$15" -> 15
+        total += quantity * unitPrice;
+    });
+
+    return total;
   };
 
   return (
