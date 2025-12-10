@@ -21,8 +21,7 @@ const CartItem = ({ onContinueShopping }) => {
     return total;                             
   };
 
-  const handleContinueShopping = (e) => {
-    e.preventDefault && e.preventDefault();  // opcional
+  const handleContinueShopping = () => {
     onContinueShopping();                    // vuelve a la pantalla de productos
   };
 
